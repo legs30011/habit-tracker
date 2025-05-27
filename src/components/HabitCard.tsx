@@ -1,19 +1,17 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react';
 import { Habit } from '../types/Habit';
-import { getColorClass } from '../utils/colorUtils';
 
 interface HabitCardProps {
   habit: Habit;
   onToggleDay: (id: number, dayIndex: number, completed: boolean) => void;
   onDelete: (id: number) => void;
   onEdit: (habit: Habit) => void;
-  getColorClass: (hexColor: string) => string;
 }
 
-const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggleDay, onDelete, onEdit, getColorClass }) => {
+const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggleDay, onDelete, onEdit }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const daysOfWeek = ['L', 'M', 'X', 'J', 'V', 'S', 'D']; // Días de la semana en español
+  const daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'SU']; 
   const completedDays = habit.days.filter((completed) => completed).length;
   const isCompletedAll = completedDays === 7;
 

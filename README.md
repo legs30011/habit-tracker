@@ -80,7 +80,7 @@ npm install -D tailwindcss postcss autoprefixer @tailwindcss/postcss
 
 ### Diseño Responsivo
 
-* **Layout mobile-first:** Se han utilizado algunas clases de Tailwind CSS adaptables, pero la responsividad completa aún podría requerir más ajustes.
+* **Layout mobile-first:** Se han utilizado algunas clases de Tailwind CSS adaptables.
 
 ### Bonus
 

@@ -7,10 +7,9 @@ interface HabitListProps {
   onToggleDay: (id: number, dayIndex: number, completed: boolean) => void;
   onDelete: (id: number) => void;
   onEdit: (habit: Habit) => void;
-  getColorClass: (hexColor: string) => string; // Asegúrate de que este prop esté aquí
 }
 
-const HabitList: React.FC<HabitListProps> = ({ habits, onToggleDay, onDelete, onEdit, getColorClass }) => {
+const HabitList: React.FC<HabitListProps> = ({ habits, onToggleDay, onDelete, onEdit }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {habits.map((habit) => (
@@ -20,7 +19,6 @@ const HabitList: React.FC<HabitListProps> = ({ habits, onToggleDay, onDelete, on
           onToggleDay={onToggleDay}
           onDelete={onDelete}
           onEdit={onEdit}
-          getColorClass={getColorClass}
         />
       ))}
       {habits.length === 0 && (

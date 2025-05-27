@@ -5,7 +5,6 @@ import { Habit } from './types/Habit';
 import DarkModeToggle from './components/DarkModeToggle';
 import FilterSort from './components/FilterSort';
 import EditHabitModal from './components/EditHabitModal';
-import { getColorClass } from './utils/colorUtils';
 import 'flowbite-react';
 import { Flowbite } from 'flowbite-react'; // Import Flowbite component
 
@@ -138,7 +137,6 @@ const App: React.FC = () => {
             onToggleDay={toggleDay}
             onDelete={deleteHabit}
             onEdit={openEditModal}
-            getColorClass={getColorClass}
           />
           <button
             onClick={resetAllDays}
