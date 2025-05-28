@@ -6,26 +6,26 @@ import DarkModeToggle from './components/DarkModeToggle';
 import FilterSort from './components/FilterSort';
 import EditHabitModal from './components/EditHabitModal';
 import 'flowbite-react';
-import { Flowbite } from 'flowbite-react'; // Import Flowbite component
+import { Flowbite } from 'flowbite-react'; 
 
-const LOCAL_STORAGE_KEY = 'habitTracker.habits';
-const LOCAL_STORAGE_DARK_MODE = 'habitTracker.darkMode';
+const HABIT_TRACKER_STORAGE_KEY='habitTracker.habits';
+const DARK_MODE_STORAGE_KEY = 'habitTracker.darkMode';
 
 const App: React.FC = () => {
   const [habits, setHabits] = useState<Habit[]>(() => {
-    const storedHabits = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const storedHabits = localStorage.getItem(HABIT_TRACKER_STORAGE_KEY);
     if (storedHabits) {
       return JSON.parse(storedHabits);
     }
-    return []; // Si no hay nada en localStorage, el estado inicial es un array vacío
+    return []; // Devuelve un array vacio si no hay datos almacenados
   });
 
   const [darkMode, setDarkMode] = useState<boolean>(() => {
-    const storedDarkMode = localStorage.getItem(LOCAL_STORAGE_DARK_MODE);
+    const storedDarkMode = localStorage.getItem(DARK_MODE_STORAGE_KEY);
     if (storedDarkMode !== null) {
       return JSON.parse(storedDarkMode);
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return window.matchMedia('(prefers-color-scheme: dark)').matches;//si el sistema operativo esta en dark mode
   });
   const [filterTerm, setFilterTerm] = useState('');
   const [sortBy, setSortBy] = useState<'name' | 'streak'>('name');
@@ -34,22 +34,22 @@ const App: React.FC = () => {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode);
-    localStorage.setItem(LOCAL_STORAGE_DARK_MODE, JSON.stringify(darkMode));
-  }, [darkMode]);
+    localStorage.setItem(DARK_MODE_STORAGE_KEY, JSON.stringify(darkMode));
+  }, [darkMode]);//se ejecuta cada vez que cambia el darkMode
 
   useEffect(() => {
-    const storedHabits = localStorage.getItem(LOCAL_STORAGE_KEY);
+    const storedHabits = localStorage.getItem(HABIT_TRACKER_STORAGE_KEY);
     if (storedHabits) {
-      setHabits(JSON.parse(storedHabits));
+      setHabits(JSON.parse(storedHabits));//se ejecuta cada vez que cambia el habits
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(habits));
-  }, [habits]);
+    localStorage.setItem(HABIT_TRACKER_STORAGE_KEY, JSON.stringify(habits));
+  }, [habits]);//se ejecuta cada vez que cambia el habits
 
   const addHabit = (newHabit: Habit) => {
-    setHabits([...habits, newHabit]);
+    setHabits([...habits, newHabit]);//spread operator para copiar el array y agregar el nuevo habit
   };
 
   const toggleDay = (habitId: number, dayIndex: number, completed: boolean) => {
@@ -65,15 +65,15 @@ const App: React.FC = () => {
           : habit
       )
     );
-  };
+  };//completed en caso de tener los dias completos
 
   const deleteHabit = (habitId: number) => {
     setHabits(habits.filter((habit) => habit.id !== habitId));
-  };
+  };//elimino el id del array de habits y se actualiza el estado de habits con el nuevo array filtrado
 
   const resetAllDays = () => {
     setHabits(habits.map((habit) => ({ ...habit, days: Array(7).fill(false) })));
-  };
+  };//reseteo todos los dias de todos los habits
 
   const openEditModal = (habitToEdit: Habit) => {
     setEditingHabit(habitToEdit);
@@ -131,7 +131,7 @@ const App: React.FC = () => {
           </div>
 
           <AddHabit onAdd={addHabit} />
-          <FilterSort onFilter={setFilterTerm} onSort={setSortBy} />
+          <FilterSort onFilter={setFilterTerm} onSort={setSortBy} currentSortBy={sortBy} />
           <HabitList
             habits={sortedHabits}
             onToggleDay={toggleDay}

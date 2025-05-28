@@ -2,16 +2,8 @@ import React, { useState } from 'react';
 import { Habit } from '../types/Habit';
 
 interface AddHabitProps {
-  onAdd: (habit: Habit) => void;
+  onAdd: (habit: Habit) => void;//funcion que se llama cuando se agrega un nuevo habit
 }
-
-/*onAdd es la función que el componente AddHabit
-llama cuando el usuario añade un nuevo hábito (dentro de 
-la función handleSubmit). El componente AddHabit no sabe qué va 
-a hacer el componente padre con este nuevo hábito, solo sabe que 
-tiene una función onAdd que puede llamar y a la que debe pas
-arle un objeto con la estructura de un Habit.*/
-
 const AddHabit: React.FC<AddHabitProps> = ({ onAdd }) => {
   const [name, setName] = useState<string>('');
   const [color, setColor] = useState<string>('#f44336');
