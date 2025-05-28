@@ -7,8 +7,6 @@ interface DarkModeToggleProps {
 }
 
 const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ onToggle, isDarkMode }) => {
-  // DarkThemeToggle de Flowbite-React maneja su propio estado y la clase 'dark' en el <html>
-  // podemos pasarle un onClick para que el padre también pueda reaccionar.
   return (
     <DarkThemeToggle
       onClick={() => onToggle(!isDarkMode)} // Reaccionar al click y notificar al padre

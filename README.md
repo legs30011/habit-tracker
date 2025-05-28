@@ -10,11 +10,6 @@ Abre [http://localhost:3000](http://localhost:3000) para verla en el navegador.
 La página se recargará si haces modificaciones.\
 También verás cualquier error de lint en la consola.
 
-### `npm test`
-
-Lanza el ejecutor de pruebas en modo interactivo.\
-Consulta la sección sobre [ejecución de pruebas](https://facebook.github.io/create-react-app/docs/running-tests) para más información.
-
 ## Tecnologías Utilizadas
 
 * **React:** Biblioteca de JavaScript para construir interfaces de usuario.

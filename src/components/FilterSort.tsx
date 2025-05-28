@@ -35,7 +35,7 @@ const FilterSort: React.FC<FilterSortProps> = ({ onFilter, onSort, currentSortBy
       </div>
       <div className="w-full sm:w-1/2">
         <div className="mb-2 block">
-          <Label htmlFor="sort" className="dark:text-gray-200">
+          <Label className="dark:text-gray-200">
             Ordenar por:
           </Label>
         </div>
