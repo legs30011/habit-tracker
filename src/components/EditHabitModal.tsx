@@ -1,37 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import { Habit } from '../types/Habit';
+import React, { useState, useEffect } from 'react'
+import { Habit } from '../types/Habit'
 
 interface EditHabitModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  habit: Habit | null;
-  onSave: (updatedHabit: Habit) => void;
+  isOpen: boolean
+  onClose: () => void
+  habit: Habit | null
+  onSave: (updatedHabit: Habit) => void
 }
 
 const EditHabitModal: React.FC<EditHabitModalProps> = ({ isOpen, onClose, habit, onSave }) => {
-  const [name, setName] = useState<string>(habit?.name || '');
-  const [color, setColor] = useState<string>(habit?.color || '#f44336');
-  const colors = ['#f44336', '#2196f3', '#4caf50', '#ffeb3b', '#9c27b0'];
+  const [name, setName] = useState<string>(habit?.name || '')
+  const [color, setColor] = useState<string>(habit?.color || '#f44336')
+  const colors = ['#f44336', '#2196f3', '#4caf50', '#ffeb3b', '#9c27b0']
 
   useEffect(() => {
     if (habit) {
-      setName(habit.name);
-      setColor(habit.color);
+      setName(habit.name)
+      setColor(habit.color)
     } else {
-      setName('');
-      setColor('#f44336');
+      setName('')
+      setColor('#f44336')
     }
-  }, [habit, isOpen]);
+  }, [habit, isOpen])
 
   const handleSave = () => {
     if (habit) {
-      onSave({ ...habit, name, color });
+      onSave({ ...habit, name, color })
     }
-    onClose();
-  };
+    onClose()
+  }
 
   if (!isOpen) {
-    return null;
+    return null
   }
 
   return (
@@ -39,13 +39,24 @@ const EditHabitModal: React.FC<EditHabitModalProps> = ({ isOpen, onClose, habit,
       <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg w-full max-w-md p-6">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100">Editar Hábito</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300">
-            <svg className="h-6 w-6 fill-current" viewBox="0 0 20 20"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd" /></svg>
+          <button
+            onClick={onClose}
+            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
+          >
+            <svg className="h-6 w-6 fill-current" viewBox="0 0 20 20">
+              <path
+                fillRule="evenodd"
+                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                clipRule="evenodd"
+              />
+            </svg>
           </button>
         </div>
         <div className="space-y-4">
           <div>
-            <label htmlFor="edit-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-100">Nombre:</label>
+            <label htmlFor="edit-name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-100">
+              Nombre:
+            </label>
             <input
               type="text"
               id="edit-name"
@@ -71,16 +82,22 @@ const EditHabitModal: React.FC<EditHabitModalProps> = ({ isOpen, onClose, habit,
           </div>
         </div>
         <div className="flex justify-end mt-6 space-x-2">
-          <button onClick={onClose} className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded shadow dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300">
+          <button
+            onClick={onClose}
+            className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded shadow dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-300"
+          >
             Cancelar
           </button>
-          <button onClick={handleSave} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:shadow-outline dark:bg-blue-600 dark:hover:bg-blue-700">
+          <button
+            onClick={handleSave}
+            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow focus:outline-none focus:shadow-outline dark:bg-blue-600 dark:hover:bg-blue-700"
+          >
             Guardar
           </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EditHabitModal;
+export default EditHabitModal

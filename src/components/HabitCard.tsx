@@ -1,23 +1,23 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useState } from 'react';
-import { Habit } from '../types/Habit';
+import React, { useState } from 'react'
+import { Habit } from '../types/Habit'
 
 interface HabitCardProps {
-  habit: Habit;
-  onToggleDay: (id: number, dayIndex: number, completed: boolean) => void;
-  onDelete: (id: number) => void;
-  onEdit: (habit: Habit) => void;
+  habit: Habit
+  onToggleDay: (id: number, dayIndex: number, completed: boolean) => void
+  onDelete: (id: number) => void
+  onEdit: (habit: Habit) => void
 }
 
 const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggleDay, onDelete, onEdit }) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'SU']; 
-  const completedDays = habit.days.filter((completed) => completed).length;
-  const isCompletedAll = completedDays === 7;
+  const [isHovered, setIsHovered] = useState(false)
+  const daysOfWeek = ['M', 'T', 'W', 'T', 'F', 'S', 'SU']
+  const completedDays = habit.days.filter((completed) => completed).length
+  const isCompletedAll = completedDays === 7
 
   const handleCheckboxChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
-    onToggleDay(habit.id, index, event.target.checked);
-  };
+    onToggleDay(habit.id, index, event.target.checked)
+  }
 
   return (
     <div
@@ -29,7 +29,10 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggleDay, onDelete, onE
         <h4 className="font-semibold text-lg dark:text-gray-200" style={{ color: habit.color }}>
           {habit.name} {isCompletedAll && <span className="ml-2 text-green-500 text-xl">✅</span>}
         </h4>
-        <div className="space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200" style={{ opacity: isHovered ? 1 : 0 }}>
+        <div
+          className="space-x-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200"
+          style={{ opacity: isHovered ? 1 : 0 }}
+        >
           <button
             onClick={() => onEdit(habit)}
             className="text-blue-600 hover:text-blue-800 focus:outline-none text-sm font-medium dark:text-blue-400 dark:hover:text-blue-500"
@@ -40,7 +43,7 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggleDay, onDelete, onE
           <button
             onClick={() => {
               if (window.confirm(`¿Estás seguro de que quieres eliminar "${habit.name}"?`)) {
-                onDelete(habit.id);
+                onDelete(habit.id)
               }
             }}
             className="text-red-600 hover:text-red-800 focus:outline-none text-sm font-medium dark:text-red-400 dark:hover:text-red-500"
@@ -52,7 +55,10 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggleDay, onDelete, onE
       </div>
       <div className="flex items-center justify-between gap-2 mb-3 flex-wrap">
         {daysOfWeek.map((day, index) => (
-          <label key={index} className="flex flex-col items-center cursor-pointer text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label
+            key={index}
+            className="flex flex-col items-center cursor-pointer text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             <input
               type="checkbox"
               checked={habit.days[index]}
@@ -65,16 +71,16 @@ const HabitCard: React.FC<HabitCardProps> = ({ habit, onToggleDay, onDelete, onE
       </div>
       <div className="w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
         <div
-          className={`h-2.5 rounded-full transition-all duration-300 ease-in-out`}
+          className="h-2.5 rounded-full transition-all duration-300 ease-in-out"
           style={{
             width: `${(completedDays / 7) * 100}%`,
-            backgroundColor: habit.color // Usamos el color directo aquí
+            backgroundColor: habit.color, // Usamos el color directo aquí
           }}
-        ></div>
+        />
       </div>
       <p className="text-sm mt-2 text-gray-600 dark:text-gray-400">{completedDays}/7 días completados</p>
     </div>
-  );
-};
+  )
+}
 
-export default HabitCard;
+export default HabitCard

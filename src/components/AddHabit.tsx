@@ -1,32 +1,35 @@
-import React, { useState } from 'react';
-import { Habit } from '../types/Habit';
+import React, { useState } from 'react'
+import { Habit } from '../types/Habit'
 
 interface AddHabitProps {
-  onAdd: (habit: Habit) => void;//funcion que se llama cuando se agrega un nuevo habit
+  onAdd: (habit: Habit) => void // funcion que se llama cuando se agrega un nuevo habit
 }
 const AddHabit: React.FC<AddHabitProps> = ({ onAdd }) => {
-  const [name, setName] = useState<string>('');
-  const [color, setColor] = useState<string>('#f44336');
-  const colors = ['#f44336', '#2196f3', '#4caf50', '#ffeb3b', '#9c27b0'];
+  const [name, setName] = useState<string>('')
+  const [color, setColor] = useState<string>('#f44336')
+  const colors = ['#f44336', '#2196f3', '#4caf50', '#ffeb3b', '#9c27b0']
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();//lo llamo primero para evitar la recarga de la pagina 
-    if (name.trim()) //si el nombre no esta vacio
-    {
+    e.preventDefault() // lo llamo primero para evitar la recarga de la pagina
+    if (name.trim()) {
+      // si el nombre no esta vacio
       onAdd({
-        id: Date.now(),//para que sea unico el id 
+        id: Date.now(), // para que sea unico el id
         name: name.trim(),
-        color: color,
+        color,
         days: Array(7).fill(false),
-      });
-      setName('');//limpia el campo para que pueda a;adir otros mas
+      })
+      setName('') // limpia el campo para que pueda a;adir otros mas
     }
-  };
+  }
 
   return (
     <div className="mb-6 p-4 border rounded-lg shadow-sm bg-white dark:bg-gray-800 dark:border-gray-700">
       <h3 className="text-lg font-semibold mb-3 text-gray-800 dark:text-gray-200">Añadir Hábito</h3>
-      <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4"
+      >
         <input
           type="text"
           value={name}
@@ -40,8 +43,8 @@ const AddHabit: React.FC<AddHabitProps> = ({ onAdd }) => {
               key={c}
               type="button"
               style={{ backgroundColor: c }}
-              className={`w-8 h-8 rounded-full cursor-pointer transition-all duration-200 ease-in-out ${c === color ? 'ring-2 ring-offset-2 ring-blue-500 dark:ring-offset-gray-800' : ''}`}//aca acordate uso de template literals para el borde de boton seleccionado
-              onClick={() => setColor(c)}//aca actualizo el color
+              className={`w-8 h-8 rounded-full cursor-pointer transition-all duration-200 ease-in-out ${c === color ? 'ring-2 ring-offset-2 ring-blue-500 dark:ring-offset-gray-800' : ''}`} // aca acordate uso de template literals para el borde de boton seleccionado
+              onClick={() => setColor(c)} // aca actualizo el color
               title={`Seleccionar color ${c}`}
             />
           ))}
@@ -54,7 +57,7 @@ const AddHabit: React.FC<AddHabitProps> = ({ onAdd }) => {
         </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default AddHabit;
+export default AddHabit

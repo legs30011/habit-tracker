@@ -1,9 +1,9 @@
-import React from 'react';
-import { DarkThemeToggle } from 'flowbite-react';
+import React from 'react'
+import { DarkThemeToggle } from 'flowbite-react'
 
 interface DarkModeToggleProps {
-  onToggle: (darkMode: boolean) => void;
-  isDarkMode: boolean;
+  onToggle: (darkMode: boolean) => void
+  isDarkMode: boolean
 }
 
 const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ onToggle, isDarkMode }) => {
@@ -12,7 +12,7 @@ const DarkModeToggle: React.FC<DarkModeToggleProps> = ({ onToggle, isDarkMode })
       onClick={() => onToggle(!isDarkMode)} // Reaccionar al click y notificar al padre
       className="focus:outline-none"
     />
-  );
-};
+  )
+}
 
-export default DarkModeToggle;
+export default DarkModeToggle
