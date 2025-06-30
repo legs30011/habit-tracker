@@ -81,3 +81,6 @@ npm install -D tailwindcss postcss autoprefixer @tailwindcss/postcss
 
 * **Toggle de Modo Oscuro:** El componente `DarkModeToggle` y el estado `darkMode` en `App.tsx` gestionan el cambio de tema aplicando la clase `dark` al `<html>`.
 * **Filtros y Ordenamiento:** El componente `FilterSort` permite filtrar por nombre y ordenar por racha (la lógica de filtrado y ordenamiento se encuentra en `App.tsx`).
+
+### extra test for github acitons
+
