@@ -10,14 +10,13 @@ import EditHabitModal from './components/EditHabitModal'
 const HABIT_TRACKER_STORAGE_KEY = 'habitTracker.habits'
 const DARK_MODE_STORAGE_KEY = 'habitTracker.darkMode'
 
-
 const App: React.FC = () => {
   const [habits, setHabits] = useState<Habit[]>(() => {
     const storedHabits = localStorage.getItem(HABIT_TRACKER_STORAGE_KEY)
     if (storedHabits) {
       return JSON.parse(storedHabits)
     }
-    return [] // Devuelve un array vacio si no hay datos almacenados
+    return []
   })
 
   const [darkMode, setDarkMode] = useState<boolean>(() => {
@@ -25,7 +24,7 @@ const App: React.FC = () => {
     if (storedDarkMode !== null) {
       return JSON.parse(storedDarkMode)
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches // si el sistema operativo esta en dark mode
+    return window.matchMedia('(prefers-color-scheme: dark)').matches
   })
   const [filterTerm, setFilterTerm] = useState('')
   const [sortBy, setSortBy] = useState<'name' | 'streak'>('name')
@@ -35,18 +34,18 @@ const App: React.FC = () => {
   useEffect(() => {
     document.documentElement.classList.toggle('dark', darkMode)
     localStorage.setItem(DARK_MODE_STORAGE_KEY, JSON.stringify(darkMode))
-  }, [darkMode]) // se ejecuta cada vez que cambia el darkMode
+  }, [darkMode])
 
   useEffect(() => {
     const storedHabits = localStorage.getItem(HABIT_TRACKER_STORAGE_KEY)
     if (storedHabits) {
-      setHabits(JSON.parse(storedHabits)) // se ejecuta cada vez que cambia el habits
+      setHabits(JSON.parse(storedHabits))
     }
   }, [])
 
   useEffect(() => {
     localStorage.setItem(HABIT_TRACKER_STORAGE_KEY, JSON.stringify(habits))
-  }, [habits]) // se ejecuta cada vez que cambia el habits
+  }, [habits])
 
   const addHabit = (newHabit: Habit) => {
     setHabits([...habits, newHabit]) // spread operator para copiar el array y agregar el nuevo habit
@@ -54,13 +53,14 @@ const App: React.FC = () => {
 
   const toggleDay = (habitId: number, dayIndex: number, completed: boolean) => {
     setHabits(
-      habits.map((habit) =>
-        habit.id === habitId
-          ? {
-              ...habit,
-              days: habit.days.map((value, index) => (index === dayIndex ? completed : value)),// se cambia el valor del dia correspondiente
-            }
-          : habit,//
+      habits.map(
+        (habit) =>
+          habit.id === habitId
+            ? {
+                ...habit,
+                days: habit.days.map((value, index) => (index === dayIndex ? completed : value)), // se cambia el valor del dia correspondiente
+              }
+            : habit, //
       ),
     )
   } // completed en caso de tener los dias completos
