@@ -48,7 +48,7 @@ const App: React.FC = () => {
   }, [habits])
 
   const addHabit = (newHabit: Habit) => {
-    setHabits([...habits, newHabit]) // spread operator para copiar el array y agregar el nuevo habit
+    setHabits([...habits, newHabit])
   }
 
   const toggleDay = (habitId: number, dayIndex: number, completed: boolean) => {
