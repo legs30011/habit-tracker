@@ -11,7 +11,7 @@
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",
     "flowbite": "^2.3.0",
-    "flowbite-react": "^0.7.2",
+    "flowbite-react": "^0.11.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
@@ -20,9 +20,22 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "*",
-    "@typescript-eslint/eslint-plugin": "^8.33.0",
-    "@typescript-eslint/parser": "^8.33.0",
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.20.7",
+    "@types/bonjour": "^3.5.13",
+    "@types/connect": "^3.4.38",
+    "@types/connect-history-api-fallback": "^1.5.4",
+    "@types/graceful-fs": "^4.1.9",
+    "@types/istanbul-lib-coverage": "^2.0.6",
+    "@types/parse-json": "^4.0.2",
+    "@types/prop-types": "^15.7.15",
+    "@types/stack-utils": "^2.0.3",
+    "@typescript-eslint/eslint-plugin": "^7.6.0",
+    "@typescript-eslint/parser": "^7.6.0",
     "autoprefixer": "^10.4.17",
+    "eslint": "^8.57.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^18.0.0",
     "eslint-config-prettier": "^10.1.5",
@@ -45,8 +58,14 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "airbnb",
+      "airbnb-typescript",
+      "airbnb/hooks"
+    ],
+    "parserOptions": {
+      "project": "./tsconfig.json"
+    }
   },
   "browserslist": {
     "production": [
